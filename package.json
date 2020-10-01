@@ -1,8 +1,8 @@
 {
-  "name": "radial-loader",
+  "name": "@kysmith/radial-loader",
   "version": "0.0.0",
   "description": "Webcomponent radial-loader following open-wc recommendations",
-  "author": "radial-loader",
+  "author": "Kyle Smith",
   "license": "MIT",
   "main": "index.js",
   "module": "index.js",
