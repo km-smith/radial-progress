@@ -6,15 +6,21 @@
       "description": "A component with a title and an action counter",
       "properties": [
         {
-          "name": "title",
-          "type": "String",
-          "description": "The title of your component",
-          "default": "Hey there"
+          "name": "diameter",
+          "type": "Number",
+          "description": "The diameter of the progress bar arc in pixels",
+          "default": 100
         },
         {
-          "name": "counter",
+          "name": "progressBarLineWidth",
           "type": "Number",
-          "description": "An action counter",
+          "description": "The width of the progress bar arc in pixels",
+          "default": 10
+        },
+        {
+          "name": "percentComplete",
+          "type": "Number",
+          "description": "Number form 0 to 100 which controls the percent complete of the progress bar arc",
           "default": 0
         }
       ],
@@ -22,8 +28,8 @@
       "slots": [],
       "cssProperties": [
         {
-          "name": "--radial-loader-text-color",
-          "description": "Main Text Color",
+          "name": "--progress-stroke-color",
+          "description": "The color of the progress bar",
           "type": "Color"
         }
       ]

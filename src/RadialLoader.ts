@@ -4,18 +4,19 @@ export class RadialLoader extends LitElement {
   static styles = css`
     :host {
       display: inline-block;
-      color: var(--radial-loader-progress-color, red);
     }
   `;
 
-  @property({type: Number}) height = 100;
+  // The diameter of the progress bar arc in pixels
+  @property({type: Number}) diameter = 100;
 
-  @property({type: Number}) width = 100;
+  // The width of the progress bar arc in pixels
+  @property({type: Number}) progressBarLineWidth = 10;
 
-  @property({type: Number}) lineWidth = 10;
-
+  // Number form 0 to 100 which controls the percent complete of the progress bar arc
   @property({type: Number}) percentComplete = 0;
 
+  // Reference to the canvas element
   @query('#canvas', true)
   canvasElement?: HTMLCanvasElement;
 
@@ -37,13 +38,14 @@ export class RadialLoader extends LitElement {
 
   /**
    * Draws an arc in the canvas based on the provided properties
-   * @param ctx The 2d context of the canvas element
    */
-  drawProgressArc(ctx?: CanvasRenderingContext2D) {
+  drawProgressArc() {
+    if (!this.canvasElement) return;
+    const ctx = this.canvasElement.getContext('2d');
     if (!ctx) return;
-
+    const canvasElementStyles = getComputedStyle(this.canvasElement);
     // Figure out the maximum radius of the arc
-    const radius = (Math.min(ctx.canvas.width, ctx.canvas.height) / 2) - (this.lineWidth / 2);
+    const radius = (Math.min(ctx.canvas.width, ctx.canvas.height) / 2) - (this.progressBarLineWidth / 2);
     // Find the center of the canvas
     const originX = ctx.canvas.width / 2;
     const originY = ctx.canvas.height / 2;
@@ -56,21 +58,21 @@ export class RadialLoader extends LitElement {
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.beginPath();
     // Draw the arc
-    ctx.lineWidth = this.lineWidth;
-    ctx.strokeStyle = 'currentColor';
+    ctx.lineWidth = this.progressBarLineWidth;
+    ctx.strokeStyle = canvasElementStyles?.getPropertyValue('--progress-stroke-color') ?? 'black';
     ctx.arc(originX, originY, radius, start, this.convertPercentageToRad(this.percentComplete) + start);
     ctx.stroke();
   }
 
   render() {
     return html`
-      <canvas id="canvas" width="${this.width}" height="${this.height}"></canvas>
+      <canvas id="canvas" width="${this.diameter}" height="${this.diameter}"></canvas>
     `;
   }
 
+  // After any update redraw the progress bar arc
   updated(changed: PropertyValues) {
     super.updated(changed);
-    if (!this.canvasElement) return;
-    this.drawProgressArc(this.canvasElement.getContext('2d') ?? undefined);
+    this.drawProgressArc();
   }
 }
