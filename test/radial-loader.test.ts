@@ -1,6 +1,5 @@
 import { html, fixture, expect } from '@open-wc/testing';
-import {RadialLoader} from '../src/RadialLoader.js';
-import '../radial-loader.js';
+import { RadialLoader } from '../src/RadialLoader.js';
 
 describe('RadialLoader', () => {
   it('outputs the expected dom', async () => {

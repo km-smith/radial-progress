@@ -1,11 +1,12 @@
 {
   "name": "@kysmith/radial-loader",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Webcomponent radial-loader following open-wc recommendations",
   "author": "Kyle Smith",
   "license": "MIT",
-  "main": "index.js",
-  "module": "index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "start": "concurrently --kill-others --names tsc,es-dev-server \"npm run tsc:watch\" \"es-dev-server --app-index demo/index.html --node-resolve --open --watch\"",
     "tsc:watch": "tsc --watch",
@@ -18,7 +19,8 @@
     "test": "tsc && karma start --coverage",
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
     "storybook": "concurrently --kill-others --names tsc,storybook \"npm run tsc:watch\" \"start-storybook --node-resolve --watch --open\"",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "prepublish": "tsc"
   },
   "dependencies": {
     "lit-html": "^1.1.2",

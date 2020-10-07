@@ -1,5 +1,6 @@
-import { html, css, LitElement, property, query, PropertyValues } from 'lit-element';
+import { html, css, customElement, LitElement, property, query, PropertyValues } from 'lit-element';
 
+@customElement('radial-loader')
 export class RadialLoader extends LitElement {
   static styles = css`
     :host {
@@ -74,5 +75,11 @@ export class RadialLoader extends LitElement {
   updated(changed: PropertyValues) {
     super.updated(changed);
     this.drawProgressArc();
+  }
+}
+
+declare global {
+  interface HTMLElementTagNameMap {
+    "radial-loader": RadialLoader;
   }
 }

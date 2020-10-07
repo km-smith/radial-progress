@@ -33,16 +33,6 @@ import 'radial-loader/radial-loader.js';
 
 ```js preview-story
 export const Simple = () => html`
-  <radial-loader></radial-loader>
-`;
-```
-
-## Variations
-
-###### Custom Title
-
-```js preview-story
-export const CustomTitle = () => html`
-  <radial-loader title="Hello World"></radial-loader>
+  <radial-loader percentComplete="60"></radial-loader>
 `;
 ```
