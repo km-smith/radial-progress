@@ -20,7 +20,7 @@
     "test:watch": "concurrently --kill-others --names tsc,karma \"npm run tsc:watch\" \"karma start --auto-watch=true --single-run=false\"",
     "storybook": "concurrently --kill-others --names tsc,storybook \"npm run tsc:watch\" \"start-storybook --node-resolve --watch --open\"",
     "storybook:build": "build-storybook",
-    "prepublish": "tsc"
+    "prepare": "tsc"
   },
   "dependencies": {
     "lit-html": "^1.1.2",
