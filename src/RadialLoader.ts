@@ -1,6 +1,5 @@
-import { html, css, customElement, LitElement, property, query, PropertyValues } from 'lit-element';
+import { html, css, LitElement, property, query, PropertyValues } from 'lit-element';
 
-@customElement('radial-loader')
 export class RadialLoader extends LitElement {
   static styles = css`
     :host {
